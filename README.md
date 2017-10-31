@@ -1,14 +1,14 @@
-[![view on npm](http://img.shields.io/npm/v/aws-azure-login.svg)](https://www.npmjs.org/package/aws-azure-login)
-[![npm module downloads per month](http://img.shields.io/npm/dm/aws-azure-login.svg)](https://www.npmjs.org/package/aws-azure-login)
+[![view on npm](http://img.shields.io/npm/v/aws-azure-login-adfs.svg)](https://www.npmjs.org/package/aws-azure-login)
+[![npm module downloads per month](http://img.shields.io/npm/dm/aws-azure-login-adfs.svg)](https://www.npmjs.org/package/aws-azure-login)
 
-# aws-azure-login
-If your organization uses [Azure Active Directory](https://azure.microsoft.com) to provide SSO login to the AWS console, then there is no easy way to use the [AWS CLI](https://aws.amazon.com/cli/). This tool fixes that. It lets you use the normal Azure AD login (including MFA) from a command line to create a federated AWS session and places the temporary credentials in the proper place for the AWS CLI.
+# aws-azure-login-adfs
+If your organization uses [Azure Active Directory](https://azure.microsoft.com) to provide SSO login to the AWS console, then there is no easy way to use the [AWS CLI](https://aws.amazon.com/cli/). This tool fixes that. It lets you use the normal Azure AD login (including MFA) from a command line to create a federated AWS session and places the temporary credentials in the proper place for the AWS CLI. Please note this package originated from the aws-azure-login package, and will ONLY work with Azure ADs that have been federated with an on prem ADFS environment.
 
 ## Installation
 
 You should first install the AWS CLI using the [installation instructions](http://docs.aws.amazon.com/cli/latest/userguide/installing.html). Then install aws-azure-login:
 
-    $ npm install -g aws-azure-login
+    $ npm install -g aws-azure-login-adfs
 
 ## Usage
 
@@ -20,22 +20,22 @@ Before using aws-azure-login, you should first [configure the AWS CLI](http://do
     
 When prompted for credentials just leave the fields blank. Then configure the aws-azure-login client:
 
-    $ aws-azure-login --configure
+    $ aws-azure-login-adfs --configure
     
 You'll need your Azure Tenant ID and the App ID URI. To configure a named profile, use the --profile flag.
 
     $ aws configure --profile foo
-    $ aws-azure-login --configure --profile foo
+    $ aws-azure-login-adfs --configure --profile foo
     
 ### Logging In
 
 Once the CLIs are configured, you can log in. For the default profile, just run:
 
-    $ aws-azure-login
+    $ aws-azure-login-adfs
     
 You will be prompted for your username and password. If MFA is required you'll also be prompted for a verification code. To log in with a named profile:
 
-    $ aws-azure-login --profile foo
+    $ aws-azure-login-adfs --profile foo
 
 Alternatively, you can set the `AWS_PROFILE` environmental variable to the name of the profile.
 
@@ -62,12 +62,12 @@ The Azure login page uses JavaScript, which requires a real web browser. To auto
 
 The nature of browser automation with PhantomJS means the solution is bit brittle. A minor change on the Microsoft side could break the tool. The Azure AD is also very configurable so there's a decent chance this tool doesn't cover your use case. If something isn't working, you can have the tool print out more detail on what it is doing to try to diagnose. aws-azure-login uses the [Node debug module](https://www.npmjs.com/package/debug) to print out debug info. Just set the DEBUG environmental variable to 'aws-azure-login'. On Linux/OS X:
 
-    $ DEBUG=aws-azure-login aws-azure-login
+    $ DEBUG=aws-azure-login-adfs aws-azure-login-adfs
 
 On Windows:
 
-    > set DEBUG=aws-azure-login
-    > aws-azure-login
+    > set DEBUG=aws-azure-login-adfs
+    > aws-azure-login-adfs
 
 ## Support for Other Authentication Providers
 

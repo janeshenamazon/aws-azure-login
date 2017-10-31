@@ -1,12 +1,12 @@
 {
-  "name": "aws-azure-login",
+  "name": "aws-azure-login-adfs",
   "version": "0.6.2",
   "description": "Use Azure AD SSO to log into the AWS CLI when the Azure AD is federated with on-prem ADFS.",
   "main": "index.js",
   "author": "Jane Shen <janeshen@amazon.com>",
   "license": "MIT",
   "bin": {
-    "aws-azure-login": "bin/index.js"
+    "aws-azure-login-adfs": "bin/index.js"
   },
   "engines": {
     "node": ">=8.0"
